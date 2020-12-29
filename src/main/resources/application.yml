@@ -1,0 +1,10 @@
+#配置支持thymeleaf模板引擎
+thymeleaf:
+  cache: false
+  prefix: classpath:templates/
+  suffix: .html,jsp
+  #配置静态资源的位置
+mvc:
+  static-path-pattern: /**
+resources:
+  static-locations: classpath:static/,file:static/

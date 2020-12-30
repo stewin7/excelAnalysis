@@ -1,6 +1,7 @@
 package com.workedemo.rnwexcel.statisticinfo.service;
 
-import org.springframework.stereotype.Service;
+import com.google.common.collect.ListMultimap;
+import com.workedemo.rnwexcel.statisticinfo.entity.PersonalData;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,8 +10,10 @@ public interface UploadInfoService {
 
     public boolean validateInfo(MultipartFile multipartFile, String jpgPath);
 
-    public String readExcel(MultipartFile multipartFile);
+    public ListMultimap<String, PersonalData> readExcel(MultipartFile multipartFile);
 
-    public String analysisExcel(MultipartFile multipartFile,String jpgPath);
+    public ListMultimap<String, String> readNameList(String jpgPath);
+
+    public ListMultimap<String, PersonalData> analysisExcel(ListMultimap<String, PersonalData> personalDataMultimap, ListMultimap<String, String> stringMultimap);
 
 }

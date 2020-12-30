@@ -9,4 +9,8 @@ public interface UploadInfoService {
 
     public boolean validateInfo(MultipartFile multipartFile, String jpgPath);
 
+    public String readExcel(MultipartFile multipartFile);
+
+    public String analysisExcel(MultipartFile multipartFile,String jpgPath);
+
 }

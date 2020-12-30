@@ -49,7 +49,7 @@ public class UploadInfoController {
     @PostMapping("/analysis")
     public String readExcel(@RequestParam("multipartFile") MultipartFile multipartFile, @RequestParam("jpgPath") String jpgPath, Model model) {
         if(uploadInfoService.validateInfo(multipartFile, jpgPath)){
-
+            String str = uploadInfoService.readExcel(multipartFile);
         }
         return "";
     }

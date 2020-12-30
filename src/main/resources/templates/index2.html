@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feel - A Digital Solutions Business</title>
+    <meta name="description"
+          content="We work with entrepreneurs and forward-looking companies to transform ideas into products that HELP, CHALLENGE, and INSPIRE. Got an idea? Call us 02 96902592.">
+    <meta property="og:type" content="business.business">
+    <meta property="og:title" content="Feel - A Digital Solutions Business">
+    <meta property="og:url" content="https://feel.com.au">
+    <meta property="fb:app_id" content="466690410343011"/>
+    <meta property="og:description"
+          content="We work with entrepreneurs and forward-looking companies to transform ideas into products that HELP, CHALLENGE, and INSPIRE. Got an idea? Call us 02 96902592.">
+    <meta property="og:image" content="https://feel.com.au//images/wemakepeoplefeel.jpg">
+    <meta property="business:contact_data:street_address" content="18a/617 Elizabeth Street">
+    <meta property="business:contact_data:locality" content="Redfern">
+    <meta property="business:contact_data:region" content="NSW">
+    <meta property="business:contact_data:postal_code" content="2016">
+    <meta property="business:contact_data:country_name" content="Australia">
+    <link rel="icon" type="image/x-icon" href="https://feel.com.au/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="css/ionicons.css">
+    <link rel="stylesheet" href="css/bootstrap-extended.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/three.min.js" defer></script>
+    <script type="text/javascript" src="js/detector.js" defer></script>
+    <script id="vs" type="x-shader/x-vertex" defer>
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    }
+
+
+
+
+    </script>
+
+    <script id="fs" type="x-shader/x-fragment" defer>
+    uniform sampler2D map;
+    uniform vec3 fogColor;
+    uniform float fogNear;
+    uniform float fogFar;
+
+    varying vec2 vUv;
+    void main() {
+
+      float depth = gl_FragCoord.z / gl_FragCoord.w;
+      float fogFactor = smoothstep( fogNear, fogFar, depth );
+
+      gl_FragColor = texture2D( map, vUv );
+      gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
+      gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
+    }
+
+
+
+
+    </script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
+    <script type="text/javascript">window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"
+            defer></script>
+    <script src="js/jquery.main.js" defer></script>
+    <!--[if IE]>
+    <style>
+        #clouds {
+            display: none !important;
+        }
+
+        .cloud-holder {
+            display: block !important;
+        }
+    </style>
+    <![endif]-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21711145-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-21711145-1', {'optimize_id': 'GTM-KLN4WBJ'});
+    </script>
+    <!--GET SITE CONTROL POPUP-->
+    <script type="text/javascript" async
+            src="//l.getsitecontrol.com/d7o31z7e.js">
+    </script>
+    <!--END GET SITE CONTROL POPUP-->
+</head>
+<body class="homepage" data-spy="scroll" data-target="#nav">
+<div id="wrapper">
+    <header id="header" data-spy="affix" data-offset-top="0" data-offset-bottom="0">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <a class="navbar-brand change-color" href="#">
+                        <picture class="white-logo">
+                            <!--[if IE 9]>
+                            <video style="display: none;"><![endif]-->
+                            <source srcset="/images/logo-white-small.png, images/logo-white-small-2x.png 2x"
+                                    media="(max-width: 767px)">
+                            <source srcset="/images/logo-large-white.png">
+                            <!--[if IE 9]></video><![endif]-->
+                            <img src="/images/logo-large-white.png" alt="Feel">
+                        </picture>
+                        <picture class="black-logo">
+                            <!--[if IE 9]>
+                            <video style="display: none;"><![endif]-->
+                            <source srcset="/images/logo-dark-small.png, images/logo-dark-small-2x.png 2x"
+                                    media="(max-width: 767px)">
+                            <source srcset="/images/logo-large-dark.png">
+                            <!--[if IE 9]></video><![endif]-->
+                            <img src="/images/logo-large-dark.png" alt="Feel">
+                        </picture>
+                    </a>
+                </div>
+                <a class="nav-opener change-color" href="#"><span></span></a>
+                <nav id="nav">
+                    <div class="nav-container">
+                        <a class="nav-opener" href="#"><span></span></a>
+                        <div class="nav-holder">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#What-we-do">Who we are</a></li>
+                                <li><a href="#How-we-do-it">How we work</a></li>
+                                <li><a href="whatwedo">What we do</a></li>
+                                <li><a href="#Stuff-that-worked">Stuff that worked</a></li>
+                                <li><a href="#Let’s-talk">Let’s talk</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </nav>
+        </div>
+    </header>
+    <main id="main" role="main">
+        <section class="top-inforamtiom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 column">
+                        <div class="text-block">
+                            <div class="text-wrapper">
+                                <div class="holder">
+                                    <!--h1>We build transformative experiences</h1-->
+                                    <h1>We give thoughts a chance at reality</h1>
+                                    <p>through digital craftsmanship for forward-looking brands</p>
+                                </div>
+                                <div class="austronaut">
+                                    <picture>
+                                        <!--[if IE 9]>
+                                        <video style="display: none;"><![endif]-->
+                                        <source srcset="/images/image-astronaut-small.png, /images/image-astronaut-small-2x.png 2x"
+                                                media="(max-width: 767px)">
+                                        <source srcset="/images/image-astronaut.png">
+                                        <!--[if IE 9]></video><![endif]-->
+                                        <img src="/images/image-astronaut.png" alt="image description">
+                                    </picture>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <canvas id="canvas"></canvas>
+        </section>
+        <section class="content-cols" id="What-we-do">
+            <div class="container" hidden>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5 col-sm-offset-1 title-col">
+                        <h2>We're a digital solutions business made up by tech misfits, passionate creatives and<br>
+                            curious humans.</h2>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 description">
+                        <p>We work with entrepreneurs and forward-looking companies to transform ideas into products
+                            that HELP, CHALLENGE, and INSPIRE.</p>
+                        <p>From design through to code, we delight in finding simple solutions to complex challenges.
+                            And by
+                            collaborating with our clients to form rewarding relationships, we help their companies grow
+                            and evolve.<br><br>
+                            This process is further fuelled by our integrated approach to strategy, design and
+                            development, which allows us to
+                            help deliver ideas from concept to launch, and beyond.</p>
+                        <p>Not in a rush? Here’s a bit more about <a href="about">who we are.</a><br></p>
+                    </div>
+                </div>
+            </div>
+            <div id="clouds"></div>
+            <div class="cloud-holder">
+                <img src="/images/clouds.png" alt="image description" width="1768" height="522">
+            </div>
+        </section>
+
+        <section class="stuff-section" id="Stuff-that-worked" hidden>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 column text-center">
+                        <h2>And here's some stuff that’s worked.</h2>
+                        <div class="stuff-carousel load-more-holder">
+                            <div class="slick-slider">
+                                <div class="slide">
+                                    <a popup-src="inc/fwbc-onsite" href="#">
+                      <span class="hover-block">
+                        <span class="title">FWBC OnSite App</span>
+                      </span>
+                                        <span class="image-holder">
+                        <picture>
+                          <!--[if IE 9]>
+                            <video style="display: none;"><![endif]-->
+                            <source srcset="/images/FWBC.jpg, /images/FWBC.jpg 2x" media="(max-width: 767px)">
+                          <source srcset="/images/FWBC.jpg">
+                            <!--[if IE 9]></video><![endif]-->
+                            <img src="/images/FWBC.jpg" alt="FWBC OnSite App">
+                        </picture>
+                      </span>
+                                    </a>
+                                </div>
+                                <div class="slide">
+                                    <a popup-src="inc/monster" href="#">
+                      <span class="hover-block">
+                        <span class="title">Monster Worldwide Learning Platform</span>
+                      </span>
+                                        <span class="image-holder">
+                        <picture>
+                          <!--[if IE 9]>
+                            <video style="display: none;"><![endif]-->
+                            <source srcset="/images/monster.jpg, /images/monster.jpg 2x" media="(max-width: 767px)">
+                          <source srcset="/images/monster.jpg">
+                            <!--[if IE 9]></video><![endif]-->
+                            <img src="/images/monster.jpg" alt="Monster Worldwide Recruitment Learning Platform">
+                        </picture>
+                      </span>
+                                    </a>
+                                </div>
+                                <div class="slide">
+                                    <a popup-src="inc/nokia-inhindsight" href="#">
+                      <span class="hover-block">
+                        <span class="title">In Hindsight for Nokia</span>
+                      </span>
+                                        <span class="image-holder">
+                        <picture>
+                          <!--[if IE 9]>
+                            <video style="display: none;"><![endif]-->
+                            <source srcset="/images/nokia.jpg, /images/nokia.jpg 2x" media="(max-width: 767px)">
+                          <source srcset="/images/nokia.jpg">
+                            <!--[if IE 9]></video><![endif]-->
+                            <img src="/images/nokia.jpg" alt="Nokia">
+                        </picture>
+                      </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="load-more ion-ios-arrow-down" href="./inc/more-slides">Want more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="form-section" id="Let’s-talk">
+            <form th:action="@{/analysis}" method="post" enctype="multipart/form-data"
+                  class="step-form form-validation"><!--target-page="thankyou"-->
+                <fieldset>
+                    <div class="container steps-holder">
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <h2>Let's do this</h2>
+                                <!--<p>Check out <a href="whatwedo">what we do</a>, drop your brief below or <a
+                                        href="showmethemoney">get an instant quote</a>.</p>-->
+                            </div>
+                        </div>
+                        <div class="row steps-row">
+                            <div class="col-xs-12 col-sm-6 col-md-offset-1 inputs-block">
+                                <div class="holder">
+                                    <div class="field-holder required-holder">
+                                        <input type="file" name="multipartFile" class="required" cols="30" rows="10"
+                                               placeholder="excel文件..." required/>
+                                    </div>
+                                    <div class="field-holder required-holder">
+                                        <input type="text" name="jpgPath" class="required" placeholder="jpg路径..."
+                                               required/>
+                                    </div>
+                                    <div class="field-holder required-holder">
+                                        <!--<input name="umail" class="required-email" type="email"
+                                               placeholder="My email is..." required>-->
+                                        <span style="color: red" th:text="${result_msg}" th:if="${not #strings.isEmpty(result_msg)}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="col-xs-12 col-sm-6 col-md-4 checkbox-block">
+                                <div class="required-holder check-list">
+                                    <span class="label-col">I need help with a:</span>
+                                    <div class="check-row">
+                                        <input data-type="at_least_one" name="needs[]" value="website"
+                                               data-name="uniq____" id="id-check1" checked="checked" type="checkbox">
+                                        <label for="id-check1">website</label>
+                                    </div>
+                                    <div class="check-row">
+                                        <input data-type="at_least_one" name="needs[]" value="mobile app"
+                                               data-name="uniq____" id="id-check2" type="checkbox">
+                                        <label for="id-check2">mobile app</label>
+                                    </div>
+                                    <div class="check-row">
+                                        <input data-type="at_least_one" name="needs[]" value="digital strategy"
+                                               data-name="uniq____" id="id-check3" type="checkbox">
+                                        <label for="id-check3">digital strategy</label>
+                                    </div>
+                                    <div class="check-row">
+                                        <input data-type="at_least_one" name="needs[]" value="banner campaign"
+                                               data-name="uniq____" id="id-check4" type="checkbox">
+                                        <label data-required="true" for="id-check4">banner campaign</label>
+                                    </div>
+                                    <div class="check-row">
+                                        <input data-type="at_least_one" name="needs[]" value="brand design"
+                                               data-name="uniq____" id="id-check5" type="checkbox">
+                                        <label for="id-check5">brand design</label>
+                                    </div>
+                                    <div class="check-row">
+                                        <input data-type="at_least_one" name="needs[]" value="video"
+                                               data-name="uniq____" id="id-check6" type="checkbox">
+                                        <label for="id-check6">video</label>
+                                    </div>
+                                    <div class="check-row">
+                                        <input data-type="at_least_one" name="needs[]" value="digital newsletter"
+                                               data-name="uniq____" id="id-check7" type="checkbox">
+                                        <label for="id-check7">digital newsletter</label>
+                                    </div>
+                                    <div class="check-row">
+                                        <input data-type="at_least_one" name="needs[]" value="not sure"
+                                               data-name="uniq____" id="id-check8" type="checkbox">
+                                        <label for="id-check8">not sure, help!</label>
+                                    </div>
+                                    <div class="btn-holder text-center">
+                                        <a href="#" class="next-step open item-link ion-ios-arrow-thin-right">Next
+                                            step</a>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-center submit-col">
+                                <a href="#" class="prev-step open item-link ion-ios-arrow-thin-left">Previous step</a>
+                                <button type="submit" name="mail_submit" class="item-link ion-ios-arrow-thin-right">提  交
+                                </button>
+                                <input type="hidden" value="1" name="mail_submit"/>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+        <div class="container" id="How-we-do-it">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div class="intro-section">
+                        <h2>Put simply, we are nerds.</h2>
+                        <ul class="abbr-list list-unstyled">
+                            <li>
+                                <span class="letter">N</span>
+                                <span class="letter-explanation">NAVIGATE</span>
+                                <p>We start by exploring your business, objectives and what makes it all tick.</p>
+                            </li>
+                            <li>
+                                <span class="letter">e</span>
+                                <span class="letter-explanation">EXPLODE</span>
+                                <p>We pull it apart in search of all opportunities. We love good ol' blue sky
+                                    thinking.</p>
+                            </li>
+                            <li>
+                                <span class="letter">r</span>
+                                <span class="letter-explanation">REFINE</span>
+                                <p>After some hustling and huddling, we refine our ideas into elegant solutions.</p>
+                            </li>
+                            <li>
+                                <span class="letter">d</span>
+                                <span class="letter-explanation">DEFINE</span>
+                                <p>Lastly we craft user-centric products for you to take on the world. And win.</p>
+                            </li>
+                        </ul>
+                        <p><br></p>
+                        <p>Somewhat curious? Here’s a bit more about the <a href="howwework">uncommon way we work </a>and
+                            <a href="whatwedo">what we do.</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" hidden>
+            <section class="logos-section">
+                <div class="row">
+                    <div class="col-xs-12 col-md-3 col-md-offset-1">
+                        <h3>Here are some of the folks we work with.</h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-7">
+                        <ul class="logos-list list-unstyled">
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/amnesty.png, /images/amnesty.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/amnesty.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/amnesty.png" alt="Amnesty International">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img4-small.png, /images/img4-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img4.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img4.png" alt="Ararat Rural City">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/aussiebodies.png, /images/aussiebodies.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/aussiebodies.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/aussiebodies.png" alt="Aussie Bodies">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img5-small.png, /images/img5-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img5.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img5.png" alt="Australian brewery">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img6-small.png, /images/img6-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img6.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img6.png"
+                                         alt="Australian Comission on Safety and Quality and Health Care">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img7-small.png, /images/img7-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img7.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img7.png" alt="BBC">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img8-small.png, /images/img8-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img8.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img8.png" alt="Brimbank City Council">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img9-small.png, /images/img9-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img9.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img9.png" alt="BT">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img10-small.png, /images/img10-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img10.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img10.png" alt="Cancer Council nsw">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img12-small.png, /images/img12-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img12.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img5.png" alt="City of Ryde">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img13-small.png, /images/img13-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img13.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img5.png" alt="Colorbond">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img14-small.png, /images/img14-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img14.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img4.png" alt="Cure Cancer Australia">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/fwbc2.png, /images/fwbc2.png 2x" media="(max-width: 767px)">
+                                    <source srcset="/images/fwbc2.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/fwbc2.png" alt="Fair Work Building and Construction">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img16-small.png, /images/img16-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img16.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img16.png" alt="Heart Foundation">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img17-small.png, /images/img17-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img17.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img17.png" alt="Hoopla">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img18-small.png, /images/img18-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img18.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img18.png" alt="Indigenous art code">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img19-small.png, /images/img19-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img19.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img19.png" alt="City of Karratha">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img20-small.png, /images/img20-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img20.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img20.png" alt="Madman">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img21-small.png, /images/img21-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img21.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img21.png" alt="Maitland">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img22-small.png, /images/img22-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img22.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img22.png" alt="Maui Now">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img23-small.png, /images/img23-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img23.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img23.png" alt="Monster">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img25-small.png, /images/img25-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img25.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img25.png" alt="Myplates.com.au">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img26-small.png, /images/img26-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img26.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img26.png" alt="Nokia">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img27-small.png, /images/img27-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img27.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img27.png" alt="Shoalhaven south coast nsw">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img28-small.png, /images/img28-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img28.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img28.png" alt="Sol Sana">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/sony2.png, /images/sony2.png 2x" media="(max-width: 767px)">
+                                    <source srcset="/images/sony2.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/sony2.png" alt="Sony">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img30-small.png, /images/img30-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img30.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img30.png" alt="NSW Transport for NSW">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img31-small.png, /images/img31-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img31.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img31.png" alt="Uber">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/img32-small.png, /images/img32-small-2x.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/img32.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/img32.png" alt="The University of Sydney">
+                                </picture>
+                            </li>
+                            <li>
+                                <picture>
+                                    <!--[if IE 9]>
+                                    <video style="display: none;"><![endif]-->
+                                    <source srcset="/images/zippay.png, /images/zippay.png 2x"
+                                            media="(max-width: 767px)">
+                                    <source srcset="/images/zippay.png">
+                                    <!--[if IE 9]></video><![endif]-->
+                                    <img src="/images/zippay.png" alt="Zip Pay">
+                                </picture>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer id="footer">
+        <div class="container">
+            <div class="row align-bottom">
+                <div class="col-xs-12 col-sm-5 col-md-2 col-md-offset-1">
+                    <!--address--><p><strong>Sydney</strong><!--18a, 617 Elizabeth St Redfern NSW 2016--><br><strong>Los
+                    Angeles</strong></p><!--Coming Soon></address-->
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-2">
+                    <p><a href="tel:+61296902592">+61(2) 9690 2592 (Australia)</a><br><a href="tel:+13239848651">+1 323
+                        984 8651 (USA)</a></p>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-6 copyright-holder">
+                    <span class="copyright">&copy; Feel 2018</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+/*chatbot*/
+<script>
+    window.fbMessengerPlugins = window.fbMessengerPlugins || {
+        init: function () {
+            FB.init({
+                appId: '1678638095724206',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v3.0'
+            });
+        }, callable: []
+    };
+    window.fbAsyncInit = window.fbAsyncInit || function () {
+        window.fbMessengerPlugins.callable.forEach(function (item) {
+            item();
+        });
+        window.fbMessengerPlugins.init();
+    };
+    setTimeout(function () {
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    }, 0);
+</script>
+
+<div
+        class="fb-customerchat"
+        page_id="170378733070354"
+        theme_color="#000000"
+        ref="feel-chat">
+
+</div>
+
+</body>
+</html>

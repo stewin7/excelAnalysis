@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /
 #配置支持thymeleaf模板引擎
 thymeleaf:
   cache: false
@@ -7,4 +10,4 @@ thymeleaf:
 mvc:
   static-path-pattern: /**
 resources:
-  static-locations: classpath:static/,file:static/
+  static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources,file:static/

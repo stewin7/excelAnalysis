@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 
 @Controller
-@RequestMapping("/home")
+/*@RequestMapping("/home")*/
 public class UploadInfoController {
     @Autowired
     private UploadInfoService uploadInfoService;
@@ -30,7 +30,7 @@ public class UploadInfoController {
      */
     @RequestMapping("/index")
     public String index() {
-        return "index";
+        return "index2";
     }
 
     /***

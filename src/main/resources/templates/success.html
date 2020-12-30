@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+</head>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/xlsx/0.11.9/xlsx.core.min.js"></script>
+<body>
+下载成功 ~
+<form class="form-signin" th:action="@{/home/analysis}" method="post" enctype="multipart/form-data">
+    <!--<table>
+        <tr>
+            <td>excel文件：</td>
+            <td><input type="file" name="multipartFile"/></td>
+            <td>jpg路径：</td>
+            <td><input type="text" name="jpgPath"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <input type="submit" value="提  交"/>
+                <span style="color: red" th:text="${result_msg}" th:if="${not #strings.isEmpty(result_msg)}"></span>
+            </td>
+        </tr>
+    </table>-->
+    <span style="color: red" th:text="${result_msg}" th:if="${not #strings.isEmpty(result_msg)}"></span>
+</form>
+</body>
+</html>

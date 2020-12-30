@@ -1,7 +1,11 @@
 package com.workedemo.rnwexcel.statisticinfo.service.impl;
 
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.ListMultimap;
+import com.workedemo.rnwexcel.statisticinfo.entity.PersonalData;
 import com.workedemo.rnwexcel.statisticinfo.service.UploadInfoService;
 import com.workedemo.rnwexcel.statisticinfo.utils.UploadUtils;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -20,11 +24,106 @@ public class UploadInfoServiceImpl implements UploadInfoService {
         String[] fileNames = file.list();
 
         //TODO validate excel file  -two
-
-        if (fileNames.length > 0 && true) {
+        String fileName = multipartFile.getOriginalFilename();
+        String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+        if (fileNames.length > 0 && (suffix.equals("xlsx") || suffix.equals("xls"))) {
             return true;
         }
         return false;
+    }
+
+    /***
+     * 读取xlsx格式excel文件（默认只读取表格的第一个页签）
+     * @param multipartFile
+     * @return List<PersonalData>
+     */
+    @Override
+    public ListMultimap<String, PersonalData> readExcel(MultipartFile multipartFile) {
+        InputStream inputStream = null;
+        Workbook workbook = null;
+        ListMultimap<String, PersonalData> personalDataMap = LinkedListMultimap.create();
+        try {
+            inputStream = multipartFile.getInputStream();
+            workbook = WorkbookFactory.create(inputStream);
+            inputStream.close();
+            //工作表对象
+            Sheet sheet = workbook.getSheetAt(0);
+            //总行数
+            int rowLength = sheet.getLastRowNum() + 1;
+            //工作表的列
+            Row row = sheet.getRow(3);
+            //总列数
+            int colLength = row.getLastCellNum();
+            //得到单元格样式
+            //CellStyle cellStyle = cell.getCellStyle();
+            //System.out.println("行数：" + rowLength + ",列数：" + colLength);
+            Cell cell = null;
+            for (int i = 2; i < rowLength; i++) {
+                PersonalData personalData = new PersonalData();
+                row = sheet.getRow(i);
+                if ("".equals(row.getCell(0) + "")) {
+                    continue;
+                }
+                personalData.setName(row.getCell(0) + "");
+                personalData.setIsOut(row.getCell(1) + "");
+                personalData.setLocation(row.getCell(2) + "");
+                personalData.setOutReason(row.getCell(3) + "");
+                personalDataMap.put(row.getCell(0) + "", personalData);
+                /*for (int j = 0; j < colLength; j++) {
+                    cell = row.getCell(j);
+                    //将所有的需要读的Cell表格设置为String格式
+                    if (cell != null)
+                        cell.setCellType(CellType.STRING);
+                    //对Excel进行修改
+                    if (i > 0 && j == 1)
+                        cell.setCellValue("1000");
+                    System.out.print(cell.getStringCellValue() + "\t");
+                }*/
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return personalDataMap;
+    }
+
+    @Override
+    public ListMultimap<String, String> readNameList(String jpgPath) {
+        File file = new File(jpgPath);
+        String[] fileNames = file.list();
+        ListMultimap<String, String> nameNReason = LinkedListMultimap.create();
+        for (int i = 0; i < fileNames.length; i++) {
+            String[] temp = fileNames[i].split("-");
+            if (temp.length > 1) {
+                nameNReason.put(temp[0], temp[1].substring(0, temp[1].indexOf(".jpg")));
+            }
+        }
+        return nameNReason;
+    }
+
+    @Override
+    public ListMultimap<String, PersonalData> analysisExcel(ListMultimap<String, PersonalData> personalDataMultimap, ListMultimap<String, String> stringMultimap) {
+        //遍历stringMultimap,将已存在的更新excel，不存在的追加
+        //
+        for (Object key : stringMultimap.keySet()) {
+            String keyValue = key.toString();
+            System.out.println(keyValue);
+            PersonalData personalData = null;
+            if (personalDataMultimap.containsKey(keyValue)) {
+                personalData = personalDataMultimap.get(keyValue).get(0);
+                personalData.setOutReason(stringMultimap.get(keyValue) + "");
+            } else {
+                personalData = new PersonalData();
+                personalData.setName(keyValue);
+                personalData.setIsOut("否");
+                personalData.setLocation("");
+                personalData.setOutReason(stringMultimap.get(keyValue) + "");
+            }
+            personalDataMultimap.put(keyValue, personalData);
+        }
+        //
+        //
+        return personalDataMultimap;
     }
 
     @Override

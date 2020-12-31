@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feel - A Digital Solutions Business</title>
@@ -37,6 +37,7 @@
 
 
 
+
     </script>
 
     <script id="fs" type="x-shader/x-fragment" defer>
@@ -55,6 +56,7 @@
       gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
       gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
     }
+
 
 
 
@@ -96,6 +98,40 @@
     </script>
     <!--END GET SITE CONTROL POPUP-->
 </head>
+<script>
+    function doUpload() {
+        var formData = new FormData($("#uploadForm")[0]);
+        $.ajax({
+            url: 'http://localhost:8080/analysis',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            responseType: "blob",
+            success: function (fileData) {
+                const blob = new Blob([fileData], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})
+                downFile(blob, "__.xlsx");
+            },
+            error: function () {
+                alert("0");
+            }
+        });
+    }
+
+    function downFile(blob, fileName) {
+        if (window.navigator.msSaveOrOpenBlob) {
+            navigator.msSaveBlob(blob, fileName);
+        } else {
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+            window.URL.revokeObjectURL(link.href);
+        }
+    }
+</script>
 <body class="homepage" data-spy="scroll" data-target="#nav">
 <div id="wrapper">
     <header id="header" data-spy="affix" data-offset-top="0" data-offset-bottom="0">
@@ -264,8 +300,8 @@
             </div>
         </section>
         <section class="form-section" id="Let’s-talk">
-            <form th:action="@{/analysis}" method="post" enctype="multipart/form-data"
-                  class="step-form form-validation"><!--target-page="thankyou"-->
+            <form id="uploadForm" th:action="@{/analysis}" method="post" enctype="multipart/form-data"
+                  class="step-form form-validation"><!--target-page="thankyou" -->
                 <fieldset>
                     <div class="container steps-holder">
                         <div class="row">
@@ -289,7 +325,8 @@
                                     <div class="field-holder required-holder">
                                         <!--<input name="umail" class="required-email" type="email"
                                                placeholder="My email is..." required>-->
-                                        <span style="color: red" th:text="${result_msg}" th:if="${not #strings.isEmpty(result_msg)}"></span>
+                                        <span style="color: red" th:text="${result_msg}"
+                                              th:if="${not #strings.isEmpty(result_msg)}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +383,8 @@
                         <div class="row">
                             <div class="col-xs-12 text-center submit-col">
                                 <a href="#" class="prev-step open item-link ion-ios-arrow-thin-left">Previous step</a>
-                                <button type="submit" class="item-link ion-ios-arrow-thin-right">提  交
+                                <button type="button" class="item-link ion-ios-arrow-thin-right" onclick="doUpload()">提
+                                    交
                                 </button>
                                 <input type="hidden" value="1"/>
                             </div>

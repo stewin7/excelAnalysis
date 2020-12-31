@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 
 @Controller
 /*@RequestMapping("/home")*/
@@ -25,7 +26,16 @@ public class UploadInfoController {
     private UploadInfoService uploadInfoService;
 
     /***
-     * 主页
+     * 主页1
+     * @return
+     */
+    @RequestMapping("/index1")
+    public String index1() {
+        return "index";
+    }
+
+    /***
+     * 主页2
      * @return
      */
     @RequestMapping("/index")
@@ -93,9 +103,10 @@ public class UploadInfoController {
         }
         try {
             String fileName = "结果.xlsx";
-            response.setContentType("application/ms-excel");
+            //String fileName = URLEncoder.encode("下载文件的中文名称") + ".xlsx","utf-8");
+            response.setContentType("application/vnd.ms-excel;charset=utf-8");
             response.setCharacterEncoding("UTF-8");
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);//设置文件头编码方式和文件名
+            response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);//设置文件头编码方式和文件名
             OutputStream out = response.getOutputStream();
             workbook.write(out);
             workbook.close();
